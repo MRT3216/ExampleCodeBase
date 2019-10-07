@@ -9,19 +9,23 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.Drivetrain;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
-  public ExampleCommand() {
+public class Drive extends Command {
+  public Drivetrain drivetrain = Drivetrain.getInstance();
+
+  public Drive() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(drivetrain);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    drivetrain.stop();
   }
 
   // Called repeatedly when this Command is scheduled to run
