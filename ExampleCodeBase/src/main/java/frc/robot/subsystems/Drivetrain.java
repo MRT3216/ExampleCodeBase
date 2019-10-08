@@ -38,9 +38,26 @@ public class Drivetrain extends Subsystem {
 	right_master = new CANSparkMax(DRIVETRAIN.RIGHT_MASTER_MOTOR, Constants.kBrusheless);
 	right_slave = new CANSparkMax(DRIVETRAIN.RIGHT_SLAVE_MOTOR, Constants.kBrusheless);
 
+	left_master.setInverted(true);
+	left_slave.setInverted(true);
+
 	left_slave.follow(left_master);
 	right_slave.follow(right_master);
 	}
+
+
+	public void setPower(double left, double right) {
+		left = safetyCheck(left);
+		right = safetyCheck(right);
+		left_master.set(left);
+		right_master.set(right);
+	}
+
+	private double safetyCheck(double power) {
+        power = Math.min(1.0, power);
+        power = Math.max(-1.0, power);
+        return power;
+    }
 
 	public void stop() {
 		left_master.stopMotor();
