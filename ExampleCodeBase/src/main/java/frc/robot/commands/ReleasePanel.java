@@ -6,7 +6,7 @@ import frc.robot.subsystems.PanelManipulator;;
 
 public class ReleasePanel extends InstantCommand {
     private boolean extend;
-    private PanelManipulator hatchManipulator = PanelManipulator.GetInstance();
+    private PanelManipulator hatchManipulator = PanelManipulator.getInstance();
 
     public ReleasePanel(boolean extend) {
         super();
