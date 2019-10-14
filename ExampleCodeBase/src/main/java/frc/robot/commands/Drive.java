@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.Drivetrain;
 
@@ -15,7 +16,8 @@ import frc.robot.subsystems.Drivetrain;
  * An example command.  You can replace me with your own command.
  */
 public class Drive extends Command {
-  public Drivetrain drivetrain = Drivetrain.getInstance();
+  private Drivetrain drivetrain = Drivetrain.getInstance();
+  private OI oi = OI.getIntance(); 
 
   public Drive() {
     // Use requires() here to declare subsystem dependencies
@@ -31,6 +33,9 @@ public class Drive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double throttle = oi.getLeftY();
+    double turn = oi.getRightX();
+    drivetrain.setPower(0.5 * (throttle+turn), 0.5 * (throttle - turn));
   }
 
   // Make this return true when this Command no longer needs to run execute()

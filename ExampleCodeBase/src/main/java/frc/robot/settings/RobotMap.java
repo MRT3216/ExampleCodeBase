@@ -17,11 +17,24 @@ public class RobotMap {
 
   public static class ROBO_RIO {
     public static class DRIVETRAIN {
-      public static final int LEFT_MASTER_MOTOR   = 0;
-      public static final int LEFT_SLAVE_MOTOR    = 1;
-      public static final int RIGHT_MASTER_MOTOR  = 2;
-      public static final int RIGHT_SLAVE_MOTOR   = 3;
+      public static final int LEFT_MASTER_MOTOR = 0;
+      public static final int LEFT_SLAVE_MOTOR = 1;
+      public static final int RIGHT_MASTER_MOTOR = 2;
+      public static final int RIGHT_SLAVE_MOTOR = 3;
 
     }
+
+    public static class PNEUMATICS {
+      public static final int LEVER_ARM_O = 0;
+      public static final int LEVER_ARM_C = 1;
+
+      public static final int RELEASE_O = 2;
+      public static final int RELEASE_C = 3;
+    }
+
+  }
+
+  public static class DRIVE_STATION {
+    public static final int USB_GAMEPAD = 0;
   }
 }

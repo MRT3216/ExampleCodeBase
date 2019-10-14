@@ -7,9 +7,11 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.PanelManipulator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,8 +21,11 @@ import frc.robot.subsystems.Drivetrain;
  * project.
  */
 public class Robot extends TimedRobot {
-  public Drivetrain drivetrain;
-  public static OI oi;
+  private Drivetrain drivetrain;
+  private OI oi;
+  private PanelManipulator panelManipulator;
+
+  private Compressor compressor;
 
 
   /**
@@ -30,7 +35,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drivetrain = Drivetrain.getInstance();
+    panelManipulator = PanelManipulator.GetInstance();
 
+    compressor = new Compressor();
+    compressor.setClosedLoopControl(true);
+    
     oi = OI.getIntance();
   }
 

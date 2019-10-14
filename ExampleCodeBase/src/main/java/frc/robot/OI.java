@@ -7,6 +7,10 @@
 
 package frc.robot;
 
+import frc.robot.commands.EjectPanel;
+import frc.robot.commands.GrabPanel;
+import frc.robot.settings.RobotMap.DRIVE_STATION;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -41,15 +45,45 @@ public class OI {
   // button.whenReleased(new ExampleCommand());
 
   private static OI instance;
+  private Gamepad gamepad;
 
   public static OI getIntance() {
-    if(instance == null) {
+    if (instance == null) {
       instance = new OI();
     }
     return instance;
   }
 
   private OI() {
-    // Place button instantiation here 
+    // Place button instantiation here
+    gamepad = new Gamepad(DRIVE_STATION.USB_GAMEPAD);
+
+    gamepad.A.whenPressed(new GrabPanel(true));
+    gamepad.B.whenPressed(new GrabPanel(false));
+    gamepad.X.whenPressed(new EjectPanel());
+
   }
+
+  public double getRightX() {
+    double joystickValue = gamepad.getRawAxis(Gamepad.RIGHT_JOY_X_AXIS);
+    joystickValue = checkDeadZone(joystickValue);
+    return joystickValue;
+  }
+
+  public double getLeftY() {
+    double joystickValue = gamepad.getRawAxis(Gamepad.LEFT_JOY_Y_AXIS);
+    // joystickValue = checkDeadZone(joystickValue);
+    joystickValue = checkDeadZone(joystickValue);
+    // log.add("getLeftY (" + joystickValue + ")", LOG_LEVEL);
+    // log.add("Deadzone = " + RobotMap.JOYSTICK_DEADZONE, LOG_LEVEL);
+    return -1 * joystickValue;
+  }
+
+  private double checkDeadZone(double joystickValue) {
+    if (Math.abs(joystickValue) < 0.05) {
+      joystickValue = 0.0;
+    }
+    return joystickValue;
+  }
+
 }
