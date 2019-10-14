@@ -14,23 +14,21 @@ import frc.robot.subsystems.PanelManipulator;
  * Add your docs here.
  */
 public class GrabPanel extends InstantCommand {
-  private PanelManipulator hatchManipulator = PanelManipulator.GetInstance();
+    private PanelManipulator hatchManipulator = PanelManipulator.getInstance();
 
-  private boolean grab;
+    private boolean grab;
 
+    public GrabPanel(boolean grab) {
+        super();
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+        requires(hatchManipulator);
+        this.grab = grab;
+    }
 
-  public GrabPanel(boolean grab) {
-    super();
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(hatchManipulator);
-    this.grab = grab;
-  }
-
-  // Called once when the command executes
-  @Override
-  protected void initialize() {
-    hatchManipulator.grabPanel(grab);
-  }
-
+    // Called once when the command executes
+    @Override
+    protected void initialize() {
+        hatchManipulator.grabPanel(grab);
+    }
 }

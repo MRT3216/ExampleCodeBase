@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.settings.RobotMap.ROBO_RIO.PNEUMATICS;
@@ -27,7 +26,7 @@ public class PanelManipulator extends Subsystem {
     private DoubleSolenoid leverArm;
     private DoubleSolenoid release;
 
-    public static PanelManipulator GetInstance() {
+    public static PanelManipulator getInstance() {
         if (instance == null) {
             instance = new PanelManipulator();
         }

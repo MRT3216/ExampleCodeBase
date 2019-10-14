@@ -18,10 +18,10 @@ import frc.robot.settings.RobotMap.ROBO_RIO.DRIVETRAIN;
  */
 public class Drivetrain extends Subsystem {
 
-	private CANSparkMax left_master;
-	private CANSparkMax left_slave;
-	private CANSparkMax right_master;
-	private CANSparkMax right_slave;
+	private CANSparkMax leftMaster;
+	private CANSparkMax leftSlave;
+	private CANSparkMax rightMaster;
+	private CANSparkMax rightSlave;
 
 	private static Drivetrain instance = null;
 
@@ -33,35 +33,34 @@ public class Drivetrain extends Subsystem {
 	}
 
 	private Drivetrain() {
-	left_master = new CANSparkMax(DRIVETRAIN.LEFT_MASTER_MOTOR, Constants.kBrusheless);
-	left_slave = new CANSparkMax(DRIVETRAIN.LEFT_SLAVE_MOTOR, Constants.kBrusheless);
-	right_master = new CANSparkMax(DRIVETRAIN.RIGHT_MASTER_MOTOR, Constants.kBrusheless);
-	right_slave = new CANSparkMax(DRIVETRAIN.RIGHT_SLAVE_MOTOR, Constants.kBrusheless);
+		leftMaster = new CANSparkMax(DRIVETRAIN.LEFT_MASTER_MOTOR, Constants.kBrusheless);
+		leftSlave = new CANSparkMax(DRIVETRAIN.LEFT_SLAVE_MOTOR, Constants.kBrusheless);
+		rightMaster = new CANSparkMax(DRIVETRAIN.RIGHT_MASTER_MOTOR, Constants.kBrusheless);
+		rightSlave = new CANSparkMax(DRIVETRAIN.RIGHT_SLAVE_MOTOR, Constants.kBrusheless);
 
-	left_master.setInverted(true);
-	left_slave.setInverted(true);
+		leftMaster.setInverted(true);
+		leftSlave.setInverted(true);
 
-	left_slave.follow(left_master);
-	right_slave.follow(right_master);
+		leftSlave.follow(leftMaster);
+		rightSlave.follow(rightMaster);
 	}
-
 
 	public void setPower(double left, double right) {
 		left = safetyCheck(left);
 		right = safetyCheck(right);
-		left_master.set(left);
-		right_master.set(right);
+		leftMaster.set(left);
+		rightMaster.set(right);
 	}
 
 	private double safetyCheck(double power) {
-        power = Math.min(1.0, power);
-        power = Math.max(-1.0, power);
-        return power;
-    }
+		power = Math.min(1.0, power);
+		power = Math.max(-1.0, power);
+		return power;
+	}
 
 	public void stop() {
-		left_master.stopMotor();
-		right_master.stopMotor();
+		leftMaster.stopMotor();
+		rightMaster.stopMotor();
 	}
 
 	@Override

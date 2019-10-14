@@ -17,7 +17,7 @@ import frc.robot.subsystems.Drivetrain;
  */
 public class Drive extends Command {
   private Drivetrain drivetrain = Drivetrain.getInstance();
-  private OI oi = OI.getIntance(); 
+  private OI oi = OI.getInstance(); 
 
   public Drive() {
     // Use requires() here to declare subsystem dependencies
