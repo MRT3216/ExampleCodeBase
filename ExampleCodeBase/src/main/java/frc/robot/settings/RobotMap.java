@@ -31,7 +31,6 @@ public class RobotMap {
             public static final int RELEASE_O = 2;
             public static final int RELEASE_C = 3;
         }
-
     }
 
     public static class DRIVE_STATION {
